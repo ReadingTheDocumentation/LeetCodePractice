@@ -1,4 +1,4 @@
-https://leetcode.com/problems/longest-substring-without-repeating-characters/
+//https://leetcode.com/problems/longest-substring-without-repeating-characters/
 
 // Given a string s, find the length of the longest substring 
 //without repeating characters.
@@ -18,6 +18,7 @@ debugger;
     //iterate through the string
     for (let i = 0; i < s.length; i++){
         //check if value exists if not, add to set
+        debugger;
         if (!storage.has(s[i])){
             storage.add(s[i])
         } else {
@@ -29,9 +30,14 @@ debugger;
             storage.clear()
             storage.add(s[i])
         }
+        
     }
 
-    return count
+    if (storage.size > count){
+        return storage.size
+    } return count
+
+    
 
 };
 
