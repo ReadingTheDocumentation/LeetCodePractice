@@ -38,7 +38,7 @@ return Math.max(longestSeq, currentSeq.length)
 };
 
 
-console.log(lengthOfLongestSubstring("dvdf"))
+// console.log(lengthOfLongestSubstring("dvdf"))
 
 
 

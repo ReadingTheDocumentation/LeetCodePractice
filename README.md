@@ -10,3 +10,4 @@ Completed Problems:
 
 TwoSum - 3 wrong 1 accepted 
 LongestSubstring - 2 wrong 1 accepted
+Sort Array By Parity - 1 accepted
