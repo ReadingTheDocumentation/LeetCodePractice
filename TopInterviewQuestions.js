@@ -70,7 +70,6 @@ var removeDuplicates = function (nums) {
 //Given an array, rotate the array to the right by k steps, where k is non-negative.
 
 
-let rotateArray = [1, 2, 3, 4, 5, 6, 7]
 
 var rotateV1 = function (nums, k) {
     //create position variable for start/end slice method
@@ -90,23 +89,73 @@ var rotateV1 = function (nums, k) {
 //new version uses pop and unshift in a loop
 
 var rotateV2 = function (nums, k) {
-
-
     //get rotate start position
     let end = nums.length - (k + 1)
-
     //iterate over array from back to end
     for (let i = nums.length - 1; i > end; i--) {
         //unshift last item
         nums.unshift(nums[nums.length - 1])
         //remove last item
         nums.pop()
-
     }
-
-
     return nums
 
-
-
 };
+
+//above code exceeds the time limit for the test
+//we can use unshift with the spread operator on but that's a tomorrow problem we've exceed todays time limit.
+// best of both worlds in version three - this however fails when using an array that shorter in length than k
+
+
+var rotateV3 = function (nums, k) {
+
+    if (k === 0) { return nums }
+
+    if (k >= 2 && nums.length >= 2) {
+        let positionK = nums.length - (k)
+        let beginning = nums.slice(positionK)
+        nums.splice(positionK, nums.length)
+        nums.unshift(...beginning)
+    } else {
+        nums.reverse()
+    }
+    return nums
+}
+
+
+
+let rotateArray = [1, 2, 3, 4, 5, 6, 7, 8]
+var rotateV3 = function (nums, k) {
+    if (k > nums.length || k < 0) return null
+    //reverse array
+    nums.reverse()
+    //create helper function to reverse end subsection of the array
+    subArrayReverse(k - 1, nums.length - 1, nums)
+    subArrayReverse(0, k, nums)
+    //return array    
+    return nums
+
+}
+
+
+
+//takes array, start and stop as arguments
+function subArrayReverse(sIndex, eIndex, array) {
+
+    for (let i = sIndex; i < eIndex; i++) {
+        //if difference between start and stop is 1
+        //break
+        if (eIndex - sIndex === 1) break;
+
+        //reverse start and end of array
+        let start = array[eIndex]
+        let end = array[i]
+        array[i] = start
+        array[eIndex] = end
+        //decrement end index
+        eIndex--
+    }
+    //return at end of function
+    return
+
+}
